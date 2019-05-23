@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.urls import path
 from django.http import HttpResponse
+from django.shortcuts import render
 
 def home_page(request):
-    return HttpResponse()
+    response = render(request, 'index.html')
+    return HttpResponse(response)
 
 urlpatterns = [
     path('home/', home_page)
