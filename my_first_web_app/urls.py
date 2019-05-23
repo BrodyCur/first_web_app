@@ -33,12 +33,17 @@ def portfolio_page(request):
 
 def about_page(request):
     context = {'skills': ['python', 'html', 'css', 'after effects', 'photoshop', 'premiere'], 'interests': ['Gunpla', 'Video Games', 'Podcasts', 'SciFi', 'Writing', 'Comics']}
-
     response = render(request, 'about.html', context)
+    return HttpResponse(response)
+
+def favourites_page(request):
+    context = {'fave_links': ['https://bitmaker.co', 'https://www.vice.com/en_us/section/games', 'https://www.gundamkitscollection.com/']}
+    response = render(request, 'favourites.html', context)
     return HttpResponse(response)
 
 urlpatterns = [
     path('home/', home_page),
     path('portfolio/', portfolio_page),
-    path('about/', about_page)
+    path('about/', about_page),
+    path('favourites/', favourites_page)
 ]
