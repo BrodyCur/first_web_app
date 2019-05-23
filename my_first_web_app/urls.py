@@ -23,13 +23,22 @@ def home_page(request):
     return HttpResponse(response)
 
 def portfolio_page(request):
-    rand_num = randint(0, 100)
-    image_url = f"https://picsum.photos/400/600/?image={rand_num}"
-    context = {'gallery_image': image_url}
+    image_urls = []
+    for i in range(5):
+        rand_num = randint(0, 100)
+        image_urls.append(f"https://picsum.photos/400/600/?image={rand_num}")
+    context = {'gallery_images': image_urls}
     response = render(request, 'gallery.html', context)
+    return HttpResponse(response)
+
+def about_page(request):
+    context = {'skills': ['python', 'html', 'css', 'after effects', 'photoshop', 'premiere'], 'interests': ['Gunpla', 'Video Games', 'Podcasts', 'SciFi', 'Writing', 'Comics']}
+
+    response = render(request, 'about.html', context)
     return HttpResponse(response)
 
 urlpatterns = [
     path('home/', home_page),
-    path('portfolio/', portfolio_page)
+    path('portfolio/', portfolio_page),
+    path('about/', about_page)
 ]
